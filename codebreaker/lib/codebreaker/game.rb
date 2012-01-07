@@ -15,23 +15,15 @@ module Codebreaker
     end
     
     def exact_match_count(guess)
-      count = 0
-      (0..3).each do |index|
-        if exact_match?(guess, index)
-          count += 1
-        end
+      (0..3).inject(0) do |count, index|
+        count += exact_match?(guess, index) ? 1 : 0
       end
-      count
     end
     
     def number_match_count(guess)
-      count = 0
-      (0..3).each do |index|
-        if number_match?(guess, index)
-          count += 1
-        end
+      (0..3).inject(0) do |count, index|
+        count += number_match?(guess, index) ? 1 : 0
       end
-      count
     end
     
     def exact_match?(guess, index)

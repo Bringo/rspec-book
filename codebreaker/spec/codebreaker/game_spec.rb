@@ -49,6 +49,22 @@ module Codebreaker
           game.guess('1555')
         end
       end
+      
+      context "with 1 exact mactch and one number match (in that order)" do
+        it "senda a mark with '+-'" do
+          game.start('1234')
+          output.should_receive(:puts).with('+-')
+          game.guess('1355')
+        end
+      end
+      
+      context "with one number match and 1 exact match (in that order)" do
+        it "senda a mark with '+-'" do
+          game.start("1234")
+          output.should_receive(:puts).with('+-')
+          game.guess('3255')
+        end
+      end
     end
   end
 end

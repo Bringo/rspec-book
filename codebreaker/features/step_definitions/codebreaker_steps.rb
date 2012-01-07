@@ -20,20 +20,20 @@ When /^I start a new game$/ do
   game.start
 end
 
-Then /^I should see "([^"]*)"$/ do |message|
+Then /^I should see "([^\"]*)"$/ do |message|
   output.messages.should include(message)
 end
 
-Given /^secret code is "([^"]*)"$/ do |secret|
-  game = Codebreaker::Game.new(output)
-  game.start(secret)
+Given /^secret code is "([^\"]*)"$/ do |secret|
+  @game = Codebreaker::Game.new(output)
+  @game.start(secret)
 end
 
-When /^I guess "([^"]*)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+When /^I guess "([^\"]*)"$/ do |guess|
+  @game.guess(guess)
 end
 
-Then /^the mark should be "([^"]*)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^the mark should be "([^\"]*)"$/ do |mark|
+  output.messages.should include(mark)
 end
 

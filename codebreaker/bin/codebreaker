@@ -2,8 +2,14 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'codebreaker'
 
+code = (1..4).collect { rand(9)+1 }.join().to_s
+if ARGV[0]
+  code = ARGV[0].to_s
+  ARGV.delete(ARGV[0])
+end
+
 game = Codebreaker::Game.new(STDOUT)
-game.start((1..4).collect { rand(9)+1 }.join())
+game.start(code)
 while guess = gets.chomp
   game.guess(guess)
 end

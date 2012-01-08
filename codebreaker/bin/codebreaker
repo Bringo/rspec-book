@@ -9,6 +9,7 @@ if ARGV[0]
 end
 
 game = Codebreaker::Game.new(STDOUT)
+at_exit { puts "\n***\nThe secret code was: #{code}\n***" }
 game.start(code)
 while guess = gets.chomp
   game.guess(guess)
